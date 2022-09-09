@@ -12,7 +12,7 @@ public interface StudentService {
     List<StudentDto> getAllStudentsDto();
     Student getStudentByStudentId(String studentId);
     Student saveStudent(Student student);
-    Student addStudent(Student student) throws CustomException;
+    Student addStudent(String studentId, String studentName) throws CustomException;
     Book getBook(String bookName) throws CustomException;
     Student getUpdatedStudentAfterIssue(String studentId, String bookName);
     String getMessageAfterIssue(String studentId, String bookName);

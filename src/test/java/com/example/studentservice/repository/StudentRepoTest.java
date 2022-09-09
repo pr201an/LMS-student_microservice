@@ -26,7 +26,7 @@ class StudentRepoTest {
     @Order(1)
     public void saveEmployeeTest() {
         List empty = new ArrayList<>();
-        Student student = new Student("1L","30", "Aadu", empty, 2);
+        Student student = new Student("1L","10000", "Aadu", empty, 2);
         assertEquals(student, studentRepo.save(student));
     }
 
@@ -56,7 +56,7 @@ class StudentRepoTest {
     @Test
     @Order(5)
     public void deleteEmployeeTest() {
-        Optional<Student> student = studentRepo.findByStudentId("30");
+        Optional<Student> student = studentRepo.findByStudentId("10000");
         studentRepo.delete(student.get());
         Optional<Student> optionalStudent = studentRepo.findById("1L");
         assertThat(optionalStudent).isEmpty();
