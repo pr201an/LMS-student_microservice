@@ -60,12 +60,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student addStudent(Student student) throws CustomException {
-        Optional<Student> optional = studentRepo.findByStudentId(student.getStudentId());
+    public Student addStudent(String studentId, String studentName) throws CustomException {
+        Optional<Student> optional = studentRepo.findByStudentId(studentId);
         if(optional.isPresent())
             throw new CustomException("Student with the Given Student Id already present");
-        if(student.getStudentIssuedBooks() == null)
-            student.setStudentIssuedBooks(new ArrayList<>());
+        Student student = new Student();
+        student.setStudentId(studentId);
+        student.setStudentName(studentName);
+        student.setStudentIssuedBooks(new ArrayList<>());
         student.setMaxIssuing(2);
         return studentRepo.save(student);
     }

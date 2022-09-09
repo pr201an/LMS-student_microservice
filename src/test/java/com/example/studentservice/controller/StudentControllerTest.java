@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -60,9 +61,9 @@ class StudentControllerTest {
     @Test
     public void shouldCreateUser() throws Exception {
         Student student = new Student("1L","30","Aadu", new ArrayList<>(), 2);
-        Mockito.when(studentService.addStudent(Mockito.any(Student.class))).thenReturn(student);
+        Mockito.when(studentService.addStudent(any(), any())).thenReturn(student);
 
-        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/student/add")
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.post("/student/add/30/Aadu")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(mapper.writeValueAsString(student)))
                 .andExpect(MockMvcResultMatchers.status().isCreated())

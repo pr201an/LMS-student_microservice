@@ -33,12 +33,13 @@ public class StudentController {
 
     @GetMapping("/student/{studentId}")
     public ResponseEntity<Student> getStudentById(@PathVariable("studentId") String studentId) {
-        return new ResponseEntity<Student>(studentService.getStudentByStudentId(studentId), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getStudentByStudentId(studentId), HttpStatus.OK);
     }
 
-    @PostMapping("/student/add")
-    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) throws CustomException {
-        return new ResponseEntity<>(studentService.addStudent(student), HttpStatus.CREATED);
+    @PostMapping("/student/add/{studentId}/{studentName}")
+    public ResponseEntity<Student> addStudent
+            (@PathVariable String studentId, @PathVariable String studentName) throws CustomException {
+        return new ResponseEntity<>(studentService.addStudent(studentId, studentName), HttpStatus.CREATED);
     }
 
     @GetMapping("/getBook/{bookName}")
